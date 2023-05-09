@@ -20,6 +20,26 @@ export default function StudentInfoScreen({ navigation }) {
         console.log("DateOfBirth = " + DateOfBirth);
         console.log("IsMale = " + IsMale);
 
+        if(StudentNo && FirstName && MiddleName && LastName && DateOfBirth && IsMale){
+            setDisableAdd(true);
+
+            let formData = new FormData();
+            formData.append("StudentNo", StudentNo);
+            formData.append("FN = " + FirstName);
+            formData.append("MN = " + MiddleName);
+            formData.append("LN = " + LastName);  
+            formData.append("Sex = " + IsMale);
+            formData.append("DOB = " + DateOfBirth);
+            fetch('http://localhost/IT2C_Argarin/Api/student',{
+          method: 'POST',
+            })
+            .then((res) => res.json())
+            .then((data) => {
+            console.log(data);
+            setDisableAdd(false);
+            });
+        }
+
     };
 
     return (
