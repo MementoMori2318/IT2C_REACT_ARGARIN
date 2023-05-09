@@ -6,6 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import HomeScreen from "./src/views/HomeScreen";
 import StudentScreen from './src/views/StudentScreen';
+import StudentInfoScreen from './src/views/StudentInfoScreen';
 const Drawer = createDrawerNavigator();
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
     <Drawer.Navigator initialRouteName="Home">
       <Drawer.Screen name="Home" component={HomeScreen} />
       <Drawer.Screen name="Student" component={StudentScreen} />
+      <Drawer.Screen name="Student Info" component={StudentInfoScreen} options={{ drawerItemStyle:{display:"none"}}}/>
     </Drawer.Navigator>
   </NavigationContainer>
   );

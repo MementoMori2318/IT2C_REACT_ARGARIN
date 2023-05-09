@@ -12,6 +12,16 @@ export default function StudentInfoScreen({ navigation }) {
 
     const [isDisabledAdd, setDisableAdd] = useState(false);
 
+    const postStudentInfo = () =>{
+        console.log("StudentNo = " + StudentNo);
+        console.log("FirstName = " + FirstName);
+        console.log("MiddleName = " + MiddleName);
+        console.log("LastName = " + LastName);
+        console.log("DateOfBirth = " + DateOfBirth);
+        console.log("IsMale = " + IsMale);
+
+    };
+
     return (
         <>
           <FlatList
@@ -83,6 +93,31 @@ export default function StudentInfoScreen({ navigation }) {
                       value={DateOfBirth}
                     />
                   </ListItem>
+
+                  <Button
+                    onPress={postStudentInfo}
+                    title="Add Student"
+                    type="solid"
+                    disabled={isDisabledAdd}
+                    containerStyle={{
+                        marginHorizontal: 16,
+                        marginVertical: 8,
+                        borderRadius: 8,
+                    }}
+                    icon={<Icon name="plus" type="font-awesome" color="white"/>}
+                  />
+                  <Button
+                    onPress={() => navigation.navigate("Student")}
+                    title="Return"
+                    type="solid"
+                    disabled={isDisabledAdd}
+                    containerStyle={{
+                        marginHorizontal: 16,
+                        marginVertical: 8,
+                        borderRadius: 8,
+                    }}
+                    icon={<Icon name="chevron-left" type="font-awesome" color="white"/>}
+                  />
                 </View>
               </>
             }

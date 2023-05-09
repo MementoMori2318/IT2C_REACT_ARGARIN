@@ -8,6 +8,7 @@ return (
         <Button onPress={() => navigation.navigate("Student")}
         title="Go to Students"
         />
+        
         </View>
     );
 }

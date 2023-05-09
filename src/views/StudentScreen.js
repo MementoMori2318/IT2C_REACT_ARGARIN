@@ -1,6 +1,7 @@
-import { Button, View, FlatList,Text } from "react-native";
-import { ListItem, Avatar } from "@rneui/themed";
+import {View, FlatList,Text } from "react-native";
+import { ListItem, Avatar, Button, Icon } from "@rneui/themed";
 import React, {useState, useEffect} from "react";
+
 export default function StudentScreen({ navigation }) {
        const [StudentInfo, setStudentInfo] = useState([]);
     //  const StudentInfo = [
@@ -42,7 +43,17 @@ export default function StudentScreen({ navigation }) {
     ListHeaderComponent={
       <>
         <View style={{ paddingVertical: 8 }}>
-       
+                  <Button
+                    onPress={() => navigation.navigate("Student Info")}
+                    title="Add Student"
+                    type="solid"
+                    containerStyle={{
+                        marginHorizontal: 16,
+                        marginVertical: 8,
+                        borderRadius: 8,
+                    }}
+                    icon={<Icon name="plus" type="font-awesome" color="white"/>}
+                  />
           {StudentInfo.map((l, i) => (
             <ListItem
               key={i}
