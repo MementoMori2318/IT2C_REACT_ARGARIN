@@ -10,40 +10,24 @@ export default function StudentScreen({ navigation }) {
     return focused;
   }, [navigation]);
        const [StudentInfo, setStudentInfo] = useState([]);
-    //  const StudentInfo = [
-    //     {
-    //         StudentNo: "1234",
-    //         FirstName: "AA",
-    //         MiddleName: "BB",
-    //         LastName: "CC",
-    //         isMale: 1,
-    //         DateOfBirth: "1990-10-11",
-    //     },
-    //     {
-    //         StudentNo: "12345",
-    //         FirstName: "DD",
-    //         MiddleName: "EE",
-    //         LastName: "FF",
-    //         isMale: 0,
-    //         DateOfBirth: "1991-11-11",
-    //     },
-    // ];
-      const getStudentInfo = () =>{
-        fetch('http://localhost/IT2C_Argarin/Api/student',{
+    
+    const getStudentInfo = async () =>{
+      try {
+        const response = await fetch('http://192.168.1.3/IT2C_Argarin/Api/student', {
           method: 'GET',
-        })
-        .then((res) => res.json())
-        .then((result) => {
-          console.log(result.data.student_info);
-          setStudentInfo(result.data.student_info);
         });
-      };
-
-      useEffect(() =>{
-        (async ()=>{
-          getStudentInfo();
-        })();
-      },[]);
+        const result = await response.json();
+        console.log(result.data.student_info);
+        setStudentInfo(result.data.student_info);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    
+    useEffect(() =>{
+      getStudentInfo();
+    },[]); 
+    
     return (    
     <FlatList
     ListHeaderComponent={

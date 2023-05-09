@@ -8,7 +8,7 @@ export default function StudentInfoScreen({ navigation }) {
     const [MiddleName, setMiddleName] = React.useState("");
     const [LastName, setLastName] = React.useState("");
     const [DateOfBirth, setDateOfBirth] = React.useState("");
-    const [IsMale, setIsMale] = React.useState(0);
+    const [isMale, setisMale] = React.useState(0);
 
     const [isDisabledAdd, setDisableAdd] = useState(false);
 
@@ -18,32 +18,34 @@ export default function StudentInfoScreen({ navigation }) {
         console.log("MiddleName = " + MiddleName);
         console.log("LastName = " + LastName);
         console.log("DateOfBirth = " + DateOfBirth);
-        console.log("IsMale = " + IsMale);
+        console.log("isMale = " + isMale);
 
-        if(StudentNo && FirstName && MiddleName && LastName && DateOfBirth && IsMale){
+        if(StudentNo && FirstName && MiddleName && LastName && DateOfBirth){
             setDisableAdd(true);
 
             let formData = new FormData();
             formData.append("StudentNo", StudentNo);
-            formData.append("FN = " + FirstName);
-            formData.append("MN = " + MiddleName);
-            formData.append("LN = " + LastName);  
-            formData.append("Sex = " + IsMale);
-            formData.append("DOB = " + DateOfBirth);
-            fetch('http://localhost/IT2C_Argarin/Api/student',{
-          method: 'POST',
+            formData.append("FN",  FirstName);
+            formData.append("MN", MiddleName);
+            formData.append("LN", LastName);  
+            formData.append("Sex", isMale);
+            formData.append("DOB", DateOfBirth);
+            fetch('http://192.168.1.3/IT2C_Argarin/Api/student', {
+                method: 'POST',
+                body: formData,
             })
+            
             .then((res) => res.json())
             .then((data) => {
             console.log(data);
             if (data.meta.code == 200) {
                 navigation.navigate("Student");
-                setStudentNo("");
-                setFirstName("");
-                setMiddleName("");
-                setLastName("");
-                setIsMale("");
-                setDateOfBirth("");
+                setStudentNo(" ");
+                setFirstName(" ");
+                setMiddleName(" ");
+                setLastName(" ");
+                setisMale(0);
+                setDateOfBirth(" ");
             }
             setDisableAdd(false);
             });
@@ -107,8 +109,8 @@ export default function StudentInfoScreen({ navigation }) {
                     </ListItem.Content>
                     <ListItem.ButtonGroup
                         buttons={["Female", "Male"]}
-                        selectedIndex={IsMale}
-                        onPress={(index) => setIsMale(index)}
+                        selectedIndex={isMale}
+                        onPress={(index) => setisMale(index)}
                     />
                     </ListItem>
 
@@ -139,7 +141,6 @@ export default function StudentInfoScreen({ navigation }) {
                     onPress={() => navigation.navigate("Student")}
                     title="Return"
                     type="solid"
-                    disabled={isDisabledAdd}
                     containerStyle={{
                         marginHorizontal: 16,
                         marginVertical: 8,
