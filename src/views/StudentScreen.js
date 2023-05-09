@@ -3,6 +3,12 @@ import { ListItem, Avatar, Button, Icon } from "@rneui/themed";
 import React, {useState, useEffect} from "react";
 
 export default function StudentScreen({ navigation }) {
+  React.useState(() =>{
+    const focused = navigation.addListener("focus", () => {
+      getStudentInfo();
+    })
+    return focused;
+  }, [navigation]);
        const [StudentInfo, setStudentInfo] = useState([]);
     //  const StudentInfo = [
     //     {

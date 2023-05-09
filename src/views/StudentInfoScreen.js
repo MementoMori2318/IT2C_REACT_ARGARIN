@@ -36,6 +36,15 @@ export default function StudentInfoScreen({ navigation }) {
             .then((res) => res.json())
             .then((data) => {
             console.log(data);
+            if (data.meta.code == 200) {
+                navigation.navigate("Student");
+                setStudentNo("");
+                setFirstName("");
+                setMiddleName("");
+                setLastName("");
+                setIsMale("");
+                setDateOfBirth("");
+            }
             setDisableAdd(false);
             });
         }
