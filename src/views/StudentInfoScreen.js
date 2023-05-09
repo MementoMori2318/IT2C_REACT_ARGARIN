@@ -12,33 +12,33 @@ export default function StudentInfoScreen({ navigation }) {
 
     const [isDisabledAdd, setDisableAdd] = useState(false);
 
-    const postStudentInfo = () =>{
+    const postStudentInfo = () => {
         console.log("StudentNo = " + StudentNo);
         console.log("FirstName = " + FirstName);
         console.log("MiddleName = " + MiddleName);
         console.log("LastName = " + LastName);
         console.log("DateOfBirth = " + DateOfBirth);
         console.log("isMale = " + isMale);
-
-        if(StudentNo && FirstName && MiddleName && LastName && DateOfBirth){
-            setDisableAdd(true);
-
-            let formData = new FormData();
-            formData.append("StudentNo", StudentNo);
-            formData.append("FN",  FirstName);
-            formData.append("MN", MiddleName);
-            formData.append("LN", LastName);  
-            formData.append("Sex", isMale);
-            formData.append("DOB", DateOfBirth);
-            fetch('http://192.168.1.3/IT2C_Argarin/Api/student', {
-                method: 'POST',
-                body: formData,
-            })
-            
+      
+        if (StudentNo && FirstName && MiddleName && LastName && DateOfBirth) {
+          setDisableAdd(true);
+      
+          let formData = new FormData();
+            formData.set("StudentNo", StudentNo);
+            formData.set("FirstName", FirstName);
+            formData.set("MiddleName", MiddleName);
+            formData.set("LastName", LastName);
+            formData.set("isMale", isMale);
+            formData.set("DateOfBirth", DateOfBirth);
+      
+          fetch("http://192.168.1.3/IT2C_Argarin/Api/student", {
+            method: 'POST',
+            body: formData,
+          })
             .then((res) => res.json())
             .then((data) => {
-            console.log(data);
-            if (data.meta.code == 200) {
+              console.log(data);
+              if (data.meta.code == 200) {
                 navigation.navigate("Student");
                 setStudentNo(" ");
                 setFirstName(" ");
@@ -46,12 +46,12 @@ export default function StudentInfoScreen({ navigation }) {
                 setLastName(" ");
                 setisMale(0);
                 setDateOfBirth(" ");
-            }
-            setDisableAdd(false);
+              }
+              setDisableAdd(false);
             });
         }
-
-    };
+      };
+      
 
     return (
         <>
