@@ -1,9 +1,9 @@
-import { Button, View, FlatList } from "react-native";
+import { Button, View, FlatList,Text } from "react-native";
 import { ListItem, Avatar } from "@rneui/themed";
 import React, {useState, useEffect} from "react";
 export default function StudentScreen({ navigation }) {
-      const [StudentInfo, setStudentInfo] = useState([]);
-    // const StudentInfo = [
+       const [StudentInfo, setStudentInfo] = useState([]);
+    //  const StudentInfo = [
     //     {
     //         StudentNo: "1234",
     //         FirstName: "AA",
@@ -42,6 +42,7 @@ export default function StudentScreen({ navigation }) {
     ListHeaderComponent={
       <>
         <View style={{ paddingVertical: 8 }}>
+       
           {StudentInfo.map((l, i) => (
             <ListItem
               key={i}
