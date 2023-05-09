@@ -24,13 +24,12 @@ export default function StudentInfoScreen({ navigation }) {
           setDisableAdd(true);
       
           let formData = new FormData();
-            formData.set("StudentNo", StudentNo);
-            formData.set("FirstName", FirstName);
-            formData.set("MiddleName", MiddleName);
-            formData.set("LastName", LastName);
-            formData.set("isMale", isMale);
-            formData.set("DateOfBirth", DateOfBirth);
-      
+            formData.append("SN", StudentNo);
+            formData.append("FN", FirstName);
+            formData.append("MN", MiddleName);
+            formData.append("LN", LastName);
+            formData.append("Sex", isMale);
+            formData.append("DOB", DateOfBirth);
           fetch("http://192.168.1.3/IT2C_Argarin/Api/student", {
             method: 'POST',
             body: formData,
@@ -40,12 +39,12 @@ export default function StudentInfoScreen({ navigation }) {
               console.log(data);
               if (data.meta.code == 200) {
                 navigation.navigate("Student");
-                setStudentNo(" ");
-                setFirstName(" ");
-                setMiddleName(" ");
-                setLastName(" ");
+                setStudentNo("");
+                setFirstName("");
+                setMiddleName("");
+                setLastName("");
                 setisMale(0);
-                setDateOfBirth(" ");
+                setDateOfBirth("");
               }
               setDisableAdd(false);
             });
