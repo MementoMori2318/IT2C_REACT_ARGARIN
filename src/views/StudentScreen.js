@@ -22,8 +22,21 @@ export default function StudentScreen({ navigation }) {
     //     },
     // ];
       const getStudentInfo = () =>{
-        
-      }
+        fetch('http://localhost/IT2C_Argarin/Api/student',{
+          method: 'GET',
+        })
+        .then((res) => res.json())
+        .then((result) => {
+          console.log(result.data.student_info);
+          setStudentInfo(result.data.student_info);
+        });
+      };
+
+      useEffect(() =>{
+        (async ()=>{
+          getStudentInfo();
+        })();
+      },[]);
     return (    
     <FlatList
     ListHeaderComponent={
@@ -58,6 +71,7 @@ export default function StudentScreen({ navigation }) {
                 </ListItem.Subtitle>
               </ListItem.Content>
               <ListItem.Chevron color="black" />
+             
             </ListItem>
           ))}
         </View>
