@@ -3,6 +3,12 @@ import { ListItem, Avatar, Button, Icon } from "@rneui/themed";
 import React, {useState, useEffect} from "react";
 
 export default function StudentScreen({ navigation }) {
+  const LisTPressed = (id) => {
+    navigation.navigate("Student Info", {
+      id,
+    });
+  };
+
   React.useState(() =>{
     const focused = navigation.addListener("focus", () => {
       getStudentInfo();
@@ -52,21 +58,20 @@ export default function StudentScreen({ navigation }) {
                 marginVertical: 8,
                 borderRadius: 8,
               }}
+              onPress={() => LisTPressed(l.StudentNo)}
             >
-              <Avatar
-                rounded
-                source={{ uri: "https://i.pravatar.cc/300" }}
-              />
+              
               <ListItem.Content>
+                <ListItem.Title style={{ color: "black", fontWeight: "bold" }}>
+                  {l.StudentNo}
+                </ListItem.Title>
                 <ListItem.Title
                   style={{ color: "black", fontWeight: "bold" }}
                 >
                   {l.FirstName + " " + l.MiddleName + " " + l.LastName}
                 </ListItem.Title>
                 <ListItem.Subtitle style={{ color: "black" }}>
-                  {l.StudentNo +
-                    " | " +
-                    (l.isMale == 1 ? "Male" : "Female")}
+                  {(l.isMale == 1 ? "Male" : "Female")}
                 </ListItem.Subtitle>
                 <ListItem.Subtitle style={{ color: "black" }}>
                   {l.DateOfBirth}

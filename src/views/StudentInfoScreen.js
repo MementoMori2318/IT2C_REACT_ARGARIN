@@ -1,8 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, FlatList } from "react-native";
 import { ListItem, Icon, Button } from "@rneui/themed";
+import { useRoute } from "@react-navigation/native";
 
 export default function StudentInfoScreen({ navigation }) {
+    const route = useRoute();
+
+    if (route.params != undefined) {
+      console.log(route.params.id);
+    };
+
     const [StudentNo, setStudentNo] = React.useState("");
     const [FirstName, setFirstName] = React.useState("");
     const [MiddleName, setMiddleName] = React.useState("");
@@ -11,6 +18,30 @@ export default function StudentInfoScreen({ navigation }) {
     const [isMale, setisMale] = React.useState(0);
 
     const [isDisabledAdd, setDisableAdd] = useState(false);
+
+    const getStudentInfo = (id) => {
+      fetch("http://192.168.1.3/IT2C_Argarin/Api/student" + id, {
+        method: 'GET',
+      })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+
+        setStudentNo(result.data.student_info.StudentNo);
+        setFirstName(result.data.student_info.FirstName);
+        setMiddleName(result.data.student_info.MiddleName);
+        setLastName(result.data.student_info.LastName);
+        setisMale(result.data.student_info.isMale);
+        setDateOfBirth(result.data.student_info.DateOfBirth);
+      });
+    }
+    useEffect(() =>{
+      (async () =>{
+        if (route.params != undefined){
+          getStudentInfo(route.params.id)
+        }
+      })
+    },[]); 
 
     const postStudentInfo = () => {
         console.log("StudentNo = " + StudentNo);
