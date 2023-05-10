@@ -4,7 +4,7 @@ import React, {useState, useEffect} from "react";
 
 export default function TeacherScreen({ navigation }) {
   const ListPressed = (id) => {
-    navigation.navigate("Student Info", {
+    navigation.navigate("Teacher Info", {
       id,
     });
   };
