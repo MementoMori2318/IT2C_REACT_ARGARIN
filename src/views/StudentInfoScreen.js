@@ -6,7 +6,7 @@ import { useRoute } from "@react-navigation/native";
 export default function StudentInfoScreen({ navigation }) {
     const route = useRoute();
 
-    if (route.params != undefined) {
+    if (route.params !== undefined) {
       console.log(route.params.id);
     };
 
@@ -20,28 +20,31 @@ export default function StudentInfoScreen({ navigation }) {
     const [isDisabledAdd, setDisableAdd] = useState(false);
 
     const getStudentInfo = (id) => {
-      fetch("http://192.168.1.3/IT2C_Argarin/Api/student" + id, {
+      fetch("http://192.168.1.3/IT2C_Argarin/Api/student/" + id, {
         method: 'GET',
       })
       .then((res) => res.json())
       .then((result) => {
         console.log(result);
-
-        setStudentNo(result.data.student_info.StudentNo);
-        setFirstName(result.data.student_info.FirstName);
-        setMiddleName(result.data.student_info.MiddleName);
-        setLastName(result.data.student_info.LastName);
-        setisMale(result.data.student_info.isMale);
-        setDateOfBirth(result.data.student_info.DateOfBirth);
+    
+        if (result.data.student_info !== null) {
+          setStudentNo(result.data.student_info.StudentNo);
+          setFirstName(result.data.student_info.FirstName);
+          setMiddleName(result.data.student_info.MiddleName);
+          setLastName(result.data.student_info.LastName);
+          setisMale(result.data.student_info.isMale);
+          setDateOfBirth(result.data.student_info.DateOfBirth);
+        }
       });
-    }
+    };
+    
     useEffect(() =>{
       (async () =>{
-        if (route.params != undefined){
-          getStudentInfo(route.params.id)
+        if (route.params !== undefined){
+          getStudentInfo(route.params.id);
         }
-      })
-    },[]); 
+      })();
+    }, []); 
 
     const postStudentInfo = () => {
         console.log("StudentNo = " + StudentNo);

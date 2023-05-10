@@ -62,7 +62,7 @@ export default function StudentScreen({ navigation }) {
             >
               
               <ListItem.Content>
-                <ListItem.Title style={{ color: "black", fontWeight: "bold" }}>
+              <ListItem.Title style={{ color: "black", fontWeight: "bold" }}>
                   {l.StudentNo}
                 </ListItem.Title>
                 <ListItem.Title
