@@ -3,11 +3,9 @@ import { Button, View } from "react-native";
 
 export default function HomeScreen({ navigation }) {
 return (
-        <View style={{ flex: 1, alignItems: "center", justifyContent: "center"
-        }}>
-        <Button onPress={() => navigation.navigate("Student")}
-        title="Go to Students"
-        />
+        <View style={{ flex: 1, alignItems: "center", justifyContent: "center"}}>
+            <Button onPress={() => navigation.navigate("Student")} title="Go to Students"/>
+            <Button onPress={() => navigation.navigate("Teacher")} title="Go to Teacher"/>
         
         </View>
     );
