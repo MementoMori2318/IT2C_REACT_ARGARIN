@@ -165,7 +165,7 @@ export default function StudentInfoScreen({ navigation }) {
       };
     return (
         <>
-        <Text style={{alignSelf: "center", fontSize: 20, margin: 10, fontWeight: 600, color:"blue"}}>Add Student</Text>
+        
           <FlatList
           
             ListHeaderComponent={
