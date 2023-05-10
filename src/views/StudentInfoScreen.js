@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, FlatList } from "react-native";
+import { View, FlatList, Text } from "react-native";
 import { ListItem, Icon, Button } from "@rneui/themed";
 import { useRoute } from "@react-navigation/native";
 
@@ -165,7 +165,9 @@ export default function StudentInfoScreen({ navigation }) {
       };
     return (
         <>
+        {/* <Text style={{alignSelf: "center", fontSize: 20, margin: 10, fontWeight: 600, color:"blue"}}>Add Student</Text> */}
           <FlatList
+          
             ListHeaderComponent={
               <>
                 <View style={{ paddingVertical: 8 }}>
