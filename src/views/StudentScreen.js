@@ -3,7 +3,7 @@ import { ListItem, Avatar, Button, Icon } from "@rneui/themed";
 import React, {useState, useEffect} from "react";
 
 export default function StudentScreen({ navigation }) {
-  const LisTPressed = (id) => {
+  const ListPressed = (id) => {
     navigation.navigate("Student Info", {
       id,
     });
@@ -58,7 +58,7 @@ export default function StudentScreen({ navigation }) {
                 marginVertical: 8,
                 borderRadius: 8,
               }}
-              onPress={() => LisTPressed(l.StudentNo)}
+              onPress={() => ListPressed(l.StudentNo)}
             >
               
               <ListItem.Content>

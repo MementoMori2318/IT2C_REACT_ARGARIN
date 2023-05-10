@@ -20,32 +20,37 @@ export default function StudentInfoScreen({ navigation }) {
     const [isDisabledAdd, setDisableAdd] = useState(false);
 
     const getStudentInfo = (id) => {
-      fetch("http://192.168.1.3/IT2C_Argarin/Api/student/" + id, {
-        method: 'GET',
-      })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
+      if (id) {
+        fetch("http://192.168.1.3/IT2C_Argarin/Api/student/" + id, {
+          method: 'GET',
+        })
+        .then((res) => res.json())
+        .then((result) => {
+          console.log(result);
+          setDisableAdd(true);
     
-        if (result.data.student_info !== null) {
-          setStudentNo(result.data.student_info.StudentNo);
-          setFirstName(result.data.student_info.FirstName);
-          setMiddleName(result.data.student_info.MiddleName);
-          setLastName(result.data.student_info.LastName);
-          setisMale(result.data.student_info.isMale);
-          setDateOfBirth(result.data.student_info.DateOfBirth);
-        }
-      });
+          if (result.data.student_info !== null) {
+            setStudentNo(result.data.student_info.StudentNo);
+            setFirstName(result.data.student_info.FirstName);
+            setMiddleName(result.data.student_info.MiddleName);
+            setLastName(result.data.student_info.LastName);
+            setisMale(result.data.student_info.isMale);
+            setDateOfBirth(result.data.student_info.DateOfBirth);
+          }
+        });
+      }
     };
     
-    useEffect(() =>{
-      (async () =>{
-        if (route.params !== undefined){
-          getStudentInfo(route.params.id);
-        }
-      })();
-    }, []); 
-
+    useEffect(() => {
+      const focused = navigation.addListener("focus", () => {
+        getStudentInfo(route.params?.id);
+      });
+      return () => {
+        focused.remove();
+      };
+    }, [navigation, route.params?.id]);
+    
+    
     const postStudentInfo = () => {
         console.log("StudentNo = " + StudentNo);
         console.log("FirstName = " + FirstName);
