@@ -42,6 +42,7 @@ export default function StudentInfoScreen({ navigation }) {
         .then((result) => {
           console.log(result);
           setDisableAdd(true); 
+          setDisableEdit(false);
           if (result.data.student_info !== null) {
             setStudentNo(result.data.student_info.StudentNo);
             setFirstName(result.data.student_info.FirstName);
@@ -105,19 +106,50 @@ export default function StudentInfoScreen({ navigation }) {
           setDisableEdit(true);
       
           let formData = new URLSearchParams();
-            formData.append("SN", StudentNo);
-            formData.append("FN", FirstName);
-            formData.append("MN", MiddleName);
-            formData.append("LN", LastName);
-            formData.append("Sex", isMale);
-            formData.append("DOB", DateOfBirth);
+          formData.append("SN", StudentNo);
+          formData.append("FN", FirstName);
+          formData.append("MN", MiddleName);
+          formData.append("LN", LastName);
+          formData.append("Sex", isMale);
+          formData.append("DOB", DateOfBirth);
           fetch("http://192.168.1.3/IT2C_Argarin/Api/student", {
             method: 'PUT',
-            body: formData.toString,
+            body: formData.toString(),
           })
             .then((res) => res.json())
             .then((data) => {
-              console.log(data);
+              console.log(data.meta);
+              if (data.meta.code == 200) {
+                navigation.navigate("Student");
+                setStudentNo("");
+                setFirstName("");
+                setMiddleName("");
+                setLastName("");
+                setisMale(0);
+                setDateOfBirth("");
+              }
+              setDisableEdit(false);
+            });
+        }
+      };
+      const deleteStudentInfo = () => {
+        if (StudentNo && FirstName && MiddleName && LastName && DateOfBirth) {
+          setDisableEdit(true);
+      
+          let formData = new URLSearchParams();
+          formData.append("SN", StudentNo);
+          formData.append("FN", FirstName);
+          formData.append("MN", MiddleName);
+          formData.append("LN", LastName);
+          formData.append("Sex", isMale);
+          formData.append("DOB", DateOfBirth);
+          fetch("http://192.168.1.3/IT2C_Argarin/Api/student", {
+            method: 'DELETE',
+            body: formData.toString(),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data.meta);
               if (data.meta.code == 200) {
                 navigation.navigate("Student");
                 setStudentNo("");
@@ -237,6 +269,18 @@ export default function StudentInfoScreen({ navigation }) {
                         borderRadius: 8,
                     }}
                     icon={<Icon name="pencil" type="font-awesome" color="white"/>}
+                  />
+                   <Button
+                    onPress={deleteStudentInfo}
+                    title="Delete Student"
+                    type="solid"
+                    disabled={isDisabledEdit}
+                    containerStyle={{
+                        marginHorizontal: 16,
+                        marginVertical: 8,
+                        borderRadius: 8,
+                    }}
+                    icon={<Icon name="trash" type="font-awesome" color="white"/>}
                   />
                 </View>
               </>
