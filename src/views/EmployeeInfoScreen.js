@@ -51,16 +51,20 @@ export default function EmployeeInfoScreen({ navigation }) {
           setisMale(result.data.employee_info.isMale);
           setJob(result.data.employee_info.Job);
         }
+      })
+      .catch((error) => {
+        console.log(error);
       });
-  };
-  
-  useEffect(() =>{
-    (async () =>{
-      if(route.params !== undefined){
-        getEmployeeInfo(route.params.id);
-      }
-    })();
-  }, []);
+    };
+    
+    useEffect(() =>{
+      (async () =>{
+        if(route.params !== undefined){
+          getEmployeeInfo(route.params.id);
+        }
+      })();
+    }, []);
+    
 
     const postEmployeeInfo = () => {
         console.log("EmployeeNo = " + EmployeeNo);
