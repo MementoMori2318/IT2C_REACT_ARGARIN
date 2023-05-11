@@ -20,7 +20,7 @@ export default function TeacherScreen({ navigation }) {
     
     const getTeacherInfo = async () =>{
       try {
-        const response = await fetch('http://192.168.1.8/IT2C_Argarin/Api/teacher', {
+        const response = await fetch('http://172.18.114.201/IT2C_Argarin/Api/teacher', {
           method: 'GET',
         });
         const result = await response.json();

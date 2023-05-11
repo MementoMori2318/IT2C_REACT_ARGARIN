@@ -19,7 +19,7 @@ export default function StudentScreen({ navigation }) {
     
     const getStudentInfo = async () =>{
       try {
-        const response = await fetch('http://192.168.1.8/IT2C_Argarin/Api/student', {
+        const response = await fetch('http://172.18.114.201/IT2C_Argarin/Api/student', {
           method: 'GET',
         });
         const result = await response.json();

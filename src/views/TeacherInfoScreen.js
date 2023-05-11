@@ -35,7 +35,7 @@ export default function TeacherInfoScreen({ navigation }) {
     },[navigation]);
 
     const getTeacherInfo = (id) => {
-        fetch("http://192.168.1.8/IT2C_Argarin/Api/teacher/" + id, {
+        fetch("http://172.18.114.201/IT2C_Argarin/Api/teacher/" + id, {
           method: 'GET',
         })
         .then((res) => res.json())
@@ -80,7 +80,7 @@ export default function TeacherInfoScreen({ navigation }) {
             formData.append("LN", LastName);
             formData.append("Sex", isMale);
             formData.append("SUB", Subject);
-          fetch("http://192.168.1.8/IT2C_Argarin/Api/teacher", {
+          fetch("http://172.18.114.201/IT2C_Argarin/Api/teacher", {
             method: 'POST',
             body: formData,
           })
@@ -112,7 +112,7 @@ export default function TeacherInfoScreen({ navigation }) {
           formData.append("LN", LastName);
           formData.append("Sex", isMale);
           formData.append("SUB", Subject);
-          fetch("http://192.168.1.8/IT2C_Argarin/Api/teacher", {
+          fetch("http://172.18.114.201/IT2C_Argarin/Api/teacher", {
             method: 'PUT',
             body: formData.toString(),
           })
@@ -143,7 +143,7 @@ export default function TeacherInfoScreen({ navigation }) {
           formData.append("LN", LastName);
           formData.append("Sex", isMale);
           formData.append("SUB", Subject);
-          fetch("http://192.168.1.8/IT2C_Argarin/Api/teacher", {
+          fetch("http://172.18.114.201/IT2C_Argarin/Api/teacher", {
             method: 'DELETE',
             body: formData.toString(),
           })

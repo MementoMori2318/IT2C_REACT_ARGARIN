@@ -8,7 +8,7 @@ import HomeScreen from "./src/views/HomeScreen";
 import StudentScreen from './src/views/StudentScreen';
 import StudentInfoScreen from './src/views/StudentInfoScreen';
 import TeacherInfoScreen from './src/views/TeacherInfoScreen';
-import TeacherScreen from './src/views/TeacherSreen';
+import TeacherScreen from './src/views/TeacherScreen';
 const Drawer = createDrawerNavigator();
 
 export default function App() {
