@@ -3,15 +3,15 @@ import { ListItem, Avatar, Button, Icon } from "@rneui/themed";
 import React, {useState, useEffect} from "react";
 
 export default function EmployeeScreen({ navigation }) {
-  const ListPressed = (id) => {
-    navigation.navigate("Teacher Info", {
-      id,
-    });
-  };
+  // const ListPressed = (id) => {
+  //   navigation.navigate("Teacher Info", {
+  //     id,
+  //   });
+  // };
 
   React.useState(() =>{
     const focused = navigation.addListener("focus", () => {
-      getTeacherInfo();
+      getEmployeeInfo();
     })
     return focused;
   }, [navigation]);
@@ -24,15 +24,15 @@ export default function EmployeeScreen({ navigation }) {
           method: 'GET',
         });
         const result = await response.json();
-        console.log(result.data.teacher_info);
-        setEmployeeInfo(result.data.teacher_info);
+        console.log(result.data.employee_info);
+        setEmployeeInfo(result.data.employee_info);
       } catch (error) {
         console.error(error);
       }
     };
     
     useEffect(() =>{
-      getTeacherInfo();
+      getEmployeeInfo();
     },[]); 
     
     return (    
@@ -41,8 +41,8 @@ export default function EmployeeScreen({ navigation }) {
       <>
         <View style={{ paddingVertical: 8 }}>
                   <Button
-                    onPress={() => navigation.navigate("Teacher Info")}
-                    title="Add Teacher"
+                    onPress={() => navigation.navigate("Employee Info")}
+                    title="Add Employee"
                     type="solid"
                     containerStyle={{
                         marginHorizontal: 16,
@@ -51,7 +51,7 @@ export default function EmployeeScreen({ navigation }) {
                     }}
                     icon={<Icon name="plus" type="font-awesome" color="white"/>}
                   />
-          {TeacherInfo.map((l, i) => (
+          {EmployeeInfo.map((l, i) => (
             <ListItem
               key={i}
               containerStyle={{
@@ -59,23 +59,23 @@ export default function EmployeeScreen({ navigation }) {
                 marginVertical: 8,
                 borderRadius: 8,
               }}
-              onPress={() => ListPressed(l.TeacherNo)}
+              onPress={() => ListPressed(l.EmployeeNo)}
             >
               
               <ListItem.Content>
               <ListItem.Title style={{ color: "black", fontWeight: "bold" }}>
-                  {l.StudentNo}
+                 EmployeeNo: {l.EmployeeNo}
                 </ListItem.Title>
                 <ListItem.Title
                   style={{ color: "black", fontWeight: "bold" }}
                 >
-                  {l.FirstName + " " + l.MiddleName + " " + l.LastName}
+                 Name: {l.FirstName + " " + l.MiddleName + " " + l.LastName}
                 </ListItem.Title>
                 <ListItem.Subtitle style={{ color: "black" }}>
-                  {l.Subject}
+                  Job: {l.Job}
                 </ListItem.Subtitle>
                 <ListItem.Subtitle style={{ color: "black" }}>
-                  {(l.isMale == 1 ? "Male" : "Female")}
+                 Gender: {(l.isMale == 1 ? "Male" : "Female")}
                 </ListItem.Subtitle>
                
               </ListItem.Content>

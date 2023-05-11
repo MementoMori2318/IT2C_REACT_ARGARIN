@@ -18,6 +18,13 @@ return (
         containerStyle={{ marginVertical: 8, marginHorizontal: 16, }}
       />
     </View>
+    <View style={{ marginVertical: 16 ,}}>
+      <Button 
+        onPress={() => navigation.navigate("Employee")} 
+        title="Go to Employee"
+        containerStyle={{ marginVertical: 8, marginHorizontal: 16, }}
+      />
+    </View>
   </View>
     
     );
