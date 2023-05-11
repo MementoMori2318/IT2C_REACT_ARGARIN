@@ -10,6 +10,7 @@ import StudentInfoScreen from './src/views/StudentInfoScreen';
 import TeacherInfoScreen from './src/views/TeacherInfoScreen';
 import TeacherScreen from './src/views/TeacherScreen';
 import EmployeeScreen from './src/views/EmployeeScreen';
+import EmployeeInfoScreen from './src/views/EmployeeInfoScreen';
 const Drawer = createDrawerNavigator();
 
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
       <Drawer.Screen name="Employee" component={EmployeeScreen} />
       <Drawer.Screen name="Student Info" component={StudentInfoScreen} options={{ drawerItemStyle:{display:"none"}}}/>
       <Drawer.Screen name="Teacher Info" component={TeacherInfoScreen} options={{ drawerItemStyle:{display:"none"}}}/>
+      <Drawer.Screen name="Employee Info" component={EmployeeInfoScreen} options={{ drawerItemStyle:{display:"none"}}}/>
     </Drawer.Navigator>
   </NavigationContainer>
   );

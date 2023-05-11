@@ -3,11 +3,11 @@ import { ListItem, Avatar, Button, Icon } from "@rneui/themed";
 import React, {useState, useEffect} from "react";
 
 export default function EmployeeScreen({ navigation }) {
-  // const ListPressed = (id) => {
-  //   navigation.navigate("Teacher Info", {
-  //     id,
-  //   });
-  // };
+  const ListPressed = (id) => {
+    navigation.navigate("Employee Info", {
+      id,
+    });
+  };
 
   React.useState(() =>{
     const focused = navigation.addListener("focus", () => {
@@ -59,7 +59,7 @@ export default function EmployeeScreen({ navigation }) {
                 marginVertical: 8,
                 borderRadius: 8,
               }}
-              // onPress={() => ListPressed(l.EmployeeNo)}
+               onPress={() => ListPressed(l.EmployeeNo)}
             >
               
               <ListItem.Content>
