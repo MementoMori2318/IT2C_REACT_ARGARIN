@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import { ListItem, Icon, Button } from "@rneui/themed";
 
 export default function HomeScreen({ navigation }) {
@@ -18,14 +18,17 @@ export default function HomeScreen({ navigation }) {
   );
 
   return (
-    <View style={{ flex: 1, justifyContent: "center" }}>
+    <View style={{  justifyContent: "center", padding: 16 }}>
+      <Text style={{ fontSize: 32, fontWeight: "bold", marginBottom: 16, alignSelf: "center"}}>
+        Record Management System
+      </Text>
       {renderListItem("Go to Students", "school", () => {
         navigation.navigate("Student");
       })}
       {renderListItem("Go to Teacher", "book", () => {
         navigation.navigate("Teacher");
       })}
-      {renderListItem("Go to Employee", "archive", () => {
+      {renderListItem("Go to Employee", "person", () => {
         navigation.navigate("Employee");
       })}
     </View>

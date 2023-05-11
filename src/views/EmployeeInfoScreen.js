@@ -35,32 +35,32 @@ export default function EmployeeInfoScreen({ navigation }) {
     },[navigation]);
 
     const getEmployeeInfo = (id) => {
-        fetch("http://172.18.114.201/IT2C_Argarin/Api/employee/" + id, {
-          method: 'GET',
-        })
-        .then((res) => res.json())
-        .then((result) => {
-          console.log(result);
-          setDisableAdd(true); 
-          setDisableEdit(false);
-          if (result.data.employee_info !== null) {
-            setEmployeeNo(result.data.employee_info.EmployeeNo);
-            setFirstName(result.data.employee_info.FirstName);
-            setMiddleName(result.data.employee_info.MiddleName);
-            setLastName(result.data.employee_info.LastName);
-            setisMale(result.data.employee_info.isMale);
-            setJob(result.data.employee_info.Job);
-          }
-        });
-    };
-    
-    useEffect(() =>{
-      (async () =>{
-        if(route.params !== undefined){
-          getEmployeeInfo(route.params.id);
+      fetch("http://192.168.1.8/IT2C_Argarin/Api/employee/" + id, {
+        method: 'GET',
+      })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        setDisableAdd(true); 
+        setDisableEdit(false);
+        if (result.data.employee_info !== null) {
+          setEmployeeNo(result.data.employee_info.EmployeeNo);
+          setFirstName(result.data.employee_info.FirstName);
+          setMiddleName(result.data.employee_info.MiddleName);
+          setLastName(result.data.employee_info.LastName);
+          setisMale(result.data.employee_info.isMale);
+          setJob(result.data.employee_info.Job);
         }
-      })();
-    }, []);
+      });
+  };
+  
+  useEffect(() =>{
+    (async () =>{
+      if(route.params !== undefined){
+        getEmployeeInfo(route.params.id);
+      }
+    })();
+  }, []);
 
     const postEmployeeInfo = () => {
         console.log("EmployeeNo = " + EmployeeNo);
@@ -80,7 +80,7 @@ export default function EmployeeInfoScreen({ navigation }) {
             formData.append("LN", LastName);
             formData.append("Sex", isMale);
             formData.append("JOB", Job);
-          fetch("http://172.18.114.201/IT2C_Argarin/Api/employee", {
+          fetch("http://192.168.1.8/IT2C_Argarin/Api/employee", {
             method: 'POST',
             body: formData,
           })
@@ -112,7 +112,7 @@ export default function EmployeeInfoScreen({ navigation }) {
           formData.append("LN", LastName);
           formData.append("Sex", isMale);
           formData.append("JOB", Job);
-          fetch("http://172.18.114.201/IT2C_Argarin/Api/employee", {
+          fetch("http://192.168.1.8/IT2C_Argarin/Api/employee", {
             method: 'PUT',
             body: formData.toString(),
           })
@@ -143,7 +143,7 @@ export default function EmployeeInfoScreen({ navigation }) {
           formData.append("LN", LastName);
           formData.append("Sex", isMale);
           formData.append("JOB", Job);
-          fetch("http://172.18.114.201/IT2C_Argarin/Api/employee", {
+          fetch("http://192.168.1.8/IT2C_Argarin/Api/employee", {
             method: 'DELETE',
             body: formData.toString(),
           })
