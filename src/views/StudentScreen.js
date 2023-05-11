@@ -63,18 +63,18 @@ export default function StudentScreen({ navigation }) {
               
               <ListItem.Content>
               <ListItem.Title style={{ color: "black", fontWeight: "bold" }}>
-                  {l.StudentNo}
+                  {"StudentNo: " + l.StudentNo}
                 </ListItem.Title>
                 <ListItem.Title
                   style={{ color: "black", fontWeight: "bold" }}
                 >
-                  {l.FirstName + " " + l.MiddleName + " " + l.LastName}
+                  {"Name: " + l.FirstName + " " + l.MiddleName + " " + l.LastName}
                 </ListItem.Title>
                 <ListItem.Subtitle style={{ color: "black" }}>
-                  {(l.isMale == 1 ? "Male" : "Female")}
+                  {"Gender: " + (l.isMale == 1 ? "Male" : "Female")}
                 </ListItem.Subtitle>
                 <ListItem.Subtitle style={{ color: "black" }}>
-                  {l.DateOfBirth}
+                  {"DateOfBirth: " + l.DateOfBirth}
                 </ListItem.Subtitle>
               </ListItem.Content>
               <ListItem.Chevron color="black" />

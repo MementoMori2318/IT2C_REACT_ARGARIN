@@ -64,18 +64,18 @@ export default function TeacherScreen({ navigation }) {
               
               <ListItem.Content>
               <ListItem.Title style={{ color: "black", fontWeight: "bold" }}>
-                  {l.StudentNo}
+                  {"TeacherNo: "+ l.TeacherNo}
                 </ListItem.Title>
                 <ListItem.Title
                   style={{ color: "black", fontWeight: "bold" }}
                 >
-                  {l.FirstName + " " + l.MiddleName + " " + l.LastName}
+                  {"Name: "+l.FirstName + " " + l.MiddleName + " " + l.LastName}
                 </ListItem.Title>
                 <ListItem.Subtitle style={{ color: "black" }}>
-                  {l.Subject}
+                  {"Subject: "+l.Subject}
                 </ListItem.Subtitle>
                 <ListItem.Subtitle style={{ color: "black" }}>
-                  {(l.isMale == 1 ? "Male" : "Female")}
+                  {"Gender: "+(l.isMale == 1 ? "Male" : "Female")}
                 </ListItem.Subtitle>
                
               </ListItem.Content>

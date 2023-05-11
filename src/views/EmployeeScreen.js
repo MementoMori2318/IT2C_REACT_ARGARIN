@@ -59,23 +59,23 @@ export default function EmployeeScreen({ navigation }) {
                 marginVertical: 8,
                 borderRadius: 8,
               }}
-              onPress={() => ListPressed(l.EmployeeNo)}
+              // onPress={() => ListPressed(l.EmployeeNo)}
             >
               
               <ListItem.Content>
               <ListItem.Title style={{ color: "black", fontWeight: "bold" }}>
-                 EmployeeNo: {l.EmployeeNo}
+                  {"EmployeeNo: " + l.EmployeeNo}
                 </ListItem.Title>
                 <ListItem.Title
                   style={{ color: "black", fontWeight: "bold" }}
                 >
-                 Name: {l.FirstName + " " + l.MiddleName + " " + l.LastName}
+                 {"Name: "+ l.FirstName + " " + l.MiddleName + " " + l.LastName}
                 </ListItem.Title>
                 <ListItem.Subtitle style={{ color: "black" }}>
-                  Job: {l.Job}
+                   {"Job: "+l.Job}
                 </ListItem.Subtitle>
                 <ListItem.Subtitle style={{ color: "black" }}>
-                 Gender: {(l.isMale == 1 ? "Male" : "Female")}
+                 {"Gender: " + (l.isMale == 1 ? "Male" : "Female")}
                 </ListItem.Subtitle>
                
               </ListItem.Content>
